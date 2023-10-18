@@ -1,0 +1,30 @@
+<input type="text" id="search" placeholder="Search for items">
+<div id="results"></div>
+
+<script>
+const dataset = ['Apple', 'Banana', 'Cherry', 'Date', 'Grape', 'Lemon', 'Orange'];
+
+const searchInput = document.getElementById('search');
+const resultsContainer = document.getElementById('results');
+
+searchInput.addEventListener('input', function() {
+  const query = searchInput.value.toLowerCase();
+  const filteredItems = dataset.filter(item => item.toLowerCase().includes(query));
+  
+  displayResults(filteredItems);
+});
+
+function displayResults(results) {
+  resultsContainer.innerHTML = '';
+  if (results.length === 0) {
+    resultsContainer.textContent = 'No results found.';
+    return;
+  }
+  
+  results.forEach(result => {
+    const resultElement = document.createElement('div');
+    resultElement.textContent = result;
+    resultsContainer.appendChild(resultElement);
+  });
+}
+</script>
